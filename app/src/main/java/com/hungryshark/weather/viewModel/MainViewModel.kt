@@ -7,21 +7,25 @@ import com.hungryshark.weather.model.RepositoryImpl
 import java.lang.Thread.sleep
 
 class MainViewModel(
-    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
-
+    private val liveDataToObserve: MutableLiveData<Any> = MutableLiveData(),
     private val repositoryImpl: Repository = RepositoryImpl()
 ) :
     ViewModel() {
+    fun requestLiveData() = liveDataToObserve
+    fun requestWeatherFromLocalSourceRus() = requestDataFromLocalSource(isRussian = true)
+    fun requestWeatherFromLocalSourceWorld() = requestDataFromLocalSource(isRussian = false)
+    fun requestWeatherFromRemoteSource() = requestDataFromLocalSource(isRussian = true)
 
-    fun getLiveData() = liveDataToObserve
-
-    fun getWeather() = getDataFromLocalSource()
-
-    private fun getDataFromLocalSource() {
+    private fun requestDataFromLocalSource(isRussian: Boolean) {
         liveDataToObserve.value = AppState.Loading
         Thread {
             sleep(1000)
-            liveDataToObserve.postValue(AppState.Success(repositoryImpl.getWeatherFromLocalStorage()))
+            liveDataToObserve.postValue(
+                AppState.Success(
+                    if (isRussian) repositoryImpl.getWeatherFromLocalStorageRus()
+                    else repositoryImpl.getWeatherFromLocalStorageWorld()
+                )
+            )
         }.start()
     }
 }
