@@ -7,4 +7,6 @@
     <string name="error">Ошибка</string>
     <string name="reload">Перезагрузить</string>
     <string name="loading">Загрузка данных</string>
+    <string name="https_geekbrains_ru">https://geekbrains.ru/</string>
+    <string name="ok">ok</string>
 </resources>
