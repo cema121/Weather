@@ -1,6 +1,8 @@
-package com.hungryshark.weather.model
+package com.hungryshark.weather.repository
 
-interface Repository {
+import com.hungryshark.weather.model.Weather
+
+interface MainRepository {
     fun getWeatherFromServer(): Weather
     fun getWeatherFromLocalStorageRus(): List<Weather>
     fun getWeatherFromLocalStorageWorld(): List<Weather>
