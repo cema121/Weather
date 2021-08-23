@@ -12,11 +12,10 @@ import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.hungryshark.weather.R
 import com.hungryshark.weather.databinding.FragmentDetailsBinding
 import com.hungryshark.weather.model.Weather
-import com.hungryshark.weather.utils.CircleTransformation
 import com.hungryshark.weather.utils.showSnackBar
-import com.hungryshark.weather.viewModel.AppState
+import com.hungryshark.weather.app.AppState
+import com.hungryshark.weather.model.City
 import com.hungryshark.weather.viewModel.DetailsViewModel
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_details.*
 
 class DetailsFragment : Fragment() {
@@ -49,7 +48,7 @@ class DetailsFragment : Fragment() {
             is AppState.Success -> {
                 binding.viewDetailsFragment.visibility = View.VISIBLE
                 binding.loadingLayout.visibility = View.GONE
-                setWeather(appState.weatherData[0])
+                setWeather(appState.weatherData.first())
             }
             is AppState.Loading -> {
                 binding.viewDetailsFragment.visibility = View.GONE
@@ -73,6 +72,7 @@ class DetailsFragment : Fragment() {
 
     private fun setWeather(weather: Weather) {
         val city = weatherBundle.city
+        saveCity(city, weather)
         binding.cityName.text = city.city
         binding.cityCoordinates.text = String.format(
             getString(R.string.city_coordinates),
@@ -82,12 +82,6 @@ class DetailsFragment : Fragment() {
         binding.temperatureValue.text = weather.temperature.toString()
         binding.feelsLikeValue.text = weather.feelsLike.toString()
         binding.weatherCondition.text = weather.condition
-        /*Picasso
-            .get()
-            .load("https://c1.staticflickr.com/1/186/31520440226_175445c41a_b.jpg")
-            .transform(CircleTransformation())
-            .into(binding.headerIcon)
-         */
         headerIcon.load(R.drawable.city)
 
         weather.icon?.let {
@@ -102,6 +96,17 @@ class DetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun saveCity(city: City, weather: Weather) {
+        viewModel.saveCityToDB(
+            Weather(
+                city,
+                weather.temperature,
+                weather.feelsLike,
+                weather.condition
+            )
+        )
     }
 
     companion object {

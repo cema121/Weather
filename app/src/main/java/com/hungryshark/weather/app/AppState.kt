@@ -1,4 +1,4 @@
-package com.hungryshark.weather.viewModel
+package com.hungryshark.weather.app
 
 import com.hungryshark.weather.model.Weather
 
