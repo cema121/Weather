@@ -23,4 +23,6 @@
     <string name="service">Service</string>
     <string name="service_broadcast">Service + Broadcast</string>
     <string name="menu_title_history">history</string>
+    <string name="content_provider">Доступ к контактам</string>
+    <string name="authorities">geekbrains.provider</string>
 </resources>

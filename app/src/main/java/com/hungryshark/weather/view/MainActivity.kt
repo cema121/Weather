@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.hungryshark.weather.R
 import com.hungryshark.weather.databinding.MainActivityBinding
+import com.hungryshark.weather.view.contentprovider.ContentProviderFragment
 import com.hungryshark.weather.view.history.HistoryFragment
 import com.hungryshark.weather.view.main.MainFragment
 
@@ -37,6 +38,15 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.apply {
                     beginTransaction()
                         .add(R.id.container, HistoryFragment.newInstance())
+                        .addToBackStack("")
+                        .commitAllowingStateLoss()
+                }
+                true
+            }
+            R.id.menu_content_provider -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                        .add(R.id.container, ContentProviderFragment.newInstance())
                         .addToBackStack("")
                         .commitAllowingStateLoss()
                 }
