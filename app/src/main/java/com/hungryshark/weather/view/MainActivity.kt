@@ -9,6 +9,7 @@ import android.view.MenuItem
 import com.hungryshark.weather.R
 import com.hungryshark.weather.databinding.MainActivityBinding
 import com.hungryshark.weather.view.contentprovider.ContentProviderFragment
+import com.hungryshark.weather.view.googlemaps.GoogleMapsFragment
 import com.hungryshark.weather.view.history.HistoryFragment
 import com.hungryshark.weather.view.main.MainFragment
 
@@ -47,6 +48,15 @@ class MainActivity : AppCompatActivity() {
                 supportFragmentManager.apply {
                     beginTransaction()
                         .add(R.id.container, ContentProviderFragment.newInstance())
+                        .addToBackStack("")
+                        .commitAllowingStateLoss()
+                }
+                true
+            }
+            R.id.menu_google_maps -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                        .add(R.id.container, GoogleMapsFragment())
                         .addToBackStack("")
                         .commitAllowingStateLoss()
                 }
