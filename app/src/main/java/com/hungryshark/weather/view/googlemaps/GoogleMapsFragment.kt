@@ -68,7 +68,7 @@ class GoogleMapsFragment : Fragment() {
             Thread {
                 try {
                     val addresses = geoCoder.getFromLocationName(searchText, 1)
-                    if (addresses.size > 0) {
+                    if (addresses.isNotEmpty()) {
                         goToAddress(addresses, it, searchText)
                     }
                 } catch (e: IOException) {
