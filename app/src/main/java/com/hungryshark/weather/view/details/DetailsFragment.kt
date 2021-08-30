@@ -1,5 +1,7 @@
 package com.hungryshark.weather.view.details
 
+import android.app.AlertDialog
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater

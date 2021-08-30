@@ -96,7 +96,7 @@ class ContentProviderFragment : Fragment() {
             REQUEST_CODE -> {
 // Проверяем, дано ли пользователем разрешение по нашему запросу
                 if ((grantResults.isNotEmpty() &&
-                            grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                            grantResults.first() == PackageManager.PERMISSION_GRANTED)
                 ) {
                     getContacts()
                 } else {
