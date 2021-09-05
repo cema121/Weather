@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="loadingBackground">#80FFFFFF</color>
     <color name="fragmentBackground">#FFFFFF</color>
-    <color name="ic_launcher_background">#7C97E5</color>
     <color name="colorPrimaryDark">#3700CC</color>
     <color name="colorAccent">#00CCCC</color>
+    <color name="ic_launcher_background">#68A7C1</color>
 </resources>
